@@ -1,8 +1,8 @@
 import { NgModule, ApplicationRef } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { RouterModule } from '@angular/router';
+import {RouterModule} from '@angular/router';
 import { removeNgStyles, createNewHosts, createInputTransfer } from '@angularclass/hmr';
 
 /*
@@ -14,10 +14,11 @@ import { ROUTES } from './app.routes';
 import { App } from './app.component';
 import { APP_RESOLVER_PROVIDERS } from './app.resolver';
 import { AppState, InteralStateType } from './app.service';
-import { Home } from './home';
-import { About } from './about';
-import { NoContent } from './no-content';
-import { XLarge } from './home/x-large';
+import {EventsModule} from './event/events.module';
+import {MaterialModule} from '@angular/material';
+import {EventsService} from './shared/services/events.service';
+import {ToasterModule} from 'angular2-toaster/angular2-toaster';
+import {LoaderService} from './shared/services/loader.service';
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -37,21 +38,22 @@ type StoreType = {
 @NgModule({
   bootstrap: [ App ],
   declarations: [
-    App,
-    About,
-    Home,
-    NoContent,
-    XLarge
+    App
   ],
   imports: [ // import Angular's modules
     BrowserModule,
     FormsModule,
+    EventsModule,
     HttpModule,
-    RouterModule.forRoot(ROUTES, { useHash: true })
+    ToasterModule,
+    RouterModule.forRoot(ROUTES)
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection
     ENV_PROVIDERS,
-    APP_PROVIDERS
+    APP_PROVIDERS,
+    EventsService,
+    {provide: 'Environment', useValue: ENV},
+    LoaderService
   ]
 })
 export class AppModule {
