@@ -1,0 +1,36 @@
+<div class="jumbotron margin-top-40" *ngIf="!(isRunning | async)">
+  <div class="container">
+<div class="row">
+  <div class="col-md-2">
+    <h4>Wydarzenie:</h4>
+  </div>
+  <div class="col-md-10">
+    <h4>{{event?.title}}</h4>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-2">
+    <h4>Opis:</h4>
+  </div>
+  <div class="col-md-10">
+    <h4>{{event?.description}}</h4>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-2">
+    <h4>Cena:</h4>
+  </div>
+  <div class="col-md-10">
+    <h4>{{event?.price}}</h4>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-2">
+    <h4>Miejsce:</h4>
+  </div>
+  <div class="col-md-10">
+    <h4>{{event?.city}}</h4>
+  </div>
+</div>
+  </div>
+</div>

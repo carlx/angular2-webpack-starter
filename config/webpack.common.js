@@ -14,14 +14,14 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ForkCheckerPlugin = require('awesome-typescript-loader').ForkCheckerPlugin;
 const HtmlElementsPlugin = require('./html-elements-plugin');
 const AssetsPlugin = require('assets-webpack-plugin');
-const ContextReplacementPlugin = require('webpack/lib/ContextReplacementPlugin'); 
+const ContextReplacementPlugin = require('webpack/lib/ContextReplacementPlugin');
 
 /*
  * Webpack Constants
  */
 const HMR = helpers.hasProcessFlag('hot');
 const METADATA = {
-  title: 'Angular2 Webpack Starter by @gdi2290 from @AngularClass',
+  title: 'Eventi',
   baseUrl: '/',
   isDevServer: helpers.isWebpackDevServer()
 };
@@ -173,7 +173,12 @@ module.exports = function(options) {
         {
           test: /\.(jpg|png|gif)$/,
           loader: 'file'
-        }
+        },
+
+        { test: /\.scss$/, loaders: ['style', 'css', 'postcss', 'sass'] },
+        { test: /\.(woff|woff2|ttf|eot|svg)$/, loader: 'url?limit=10000' },
+        { test: /bootstrap\/dist\/js\/umd\//, loader: 'imports?jQuery=jquery'}
+
       ],
 
       postLoaders: [
@@ -195,6 +200,14 @@ module.exports = function(options) {
      * See: http://webpack.github.io/docs/configuration.html#plugins
      */
     plugins: [
+
+      new webpack.ProvidePlugin({
+        jQuery: 'jquery',
+        $: 'jquery',
+        jquery: 'jquery'
+      }),
+
+
       new AssetsPlugin({
         path: helpers.root('dist'),
         filename: 'webpack-assets.json',
@@ -223,7 +236,7 @@ module.exports = function(options) {
       /**
        * Plugin: ContextReplacementPlugin
        * Description: Provides context to Angular's use of System.import
-       * 
+       *
        * See: https://webpack.github.io/docs/list-of-plugins.html#contextreplacementplugin
        * See: https://github.com/angular/angular/issues/11580
        */

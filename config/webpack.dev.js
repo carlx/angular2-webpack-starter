@@ -136,7 +136,7 @@ module.exports = function(options) {
      * See: https://github.com/wbuchwalter/tslint-loader
      */
     tslint: {
-      emitErrors: false,
+      emitErrors: true,
       failOnHint: false,
       resourcePath: 'src'
     },

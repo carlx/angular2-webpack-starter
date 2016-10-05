@@ -1,0 +1,16 @@
+.error {
+  color: #a94442 !important;
+}
+
+.normal {
+  color: #333 !important;
+}
+
+.form-group.required .control-label:after {
+  content:"*";
+  color:red;
+}
+
+.margin-top-40 {
+  margin-top: 40px;
+}
