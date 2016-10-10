@@ -1,251 +1,300 @@
 <my-spinner [isRunning]="isRunning | async"></my-spinner>
 <div class="container center-block">
-  <event-info></event-info>
-  <form [formGroup]="registerForm" (submit)="submitForm()">
-  <!--<div class="page-header">-->
-    <!--<h2>Formularz rejestracji</h2>-->
-  <!--</div>-->
-<div class="panel panel-default" *ngIf="!(isRunning | async)">
-<div class="panel-body">
-    <div class="row">
-      <div class="col-md-12">
-        <h4>Prosimy o uważne wypełnienie wszystkich pól formularza:</h4>
-      </div>
-    </div>
+  <event-info [event]="event"></event-info>
 
-      <div class="row">
-        <div class="col-md-12">
-          <div class="form-group required" [ngClass]="{'has-error': registerForm.controls['firstname'].invalid &&
-          (registerForm.controls['firstname'].touched || formSubmitted) }">
-            <label class="control-label">Imię</label>
-            <input type="text" formControlName="firstname"
-                   placeholder=""
-                   maxlength="255"
-                   class="form-control">
-            <div
-              class="help-block with-errors"
-              *ngIf="registerForm.controls['firstname'].invalid &&
-            (registerForm.controls['firstname'].touched || formSubmitted)">
-              To pole jest wymagane.</div>
+<section [hidden]="(isRunning | async)">
+<div class="row">
+  <div class="col-md-8">
+    <form [formGroup]="registerForm" (submit)="submitForm()">
+
+      <div class="panel panel-default panel-event">
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-md-12">
+              <h4>Prosimy o uważne wypełnienie wszystkich pól formularza:</h4>
+            </div>
           </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-12">
-          <div class="form-group required" [ngClass]="{'has-error': registerForm.controls['lastname'].invalid &&
-          (registerForm.controls['lastname'].touched || formSubmitted) }">
-            <label class="control-label">Nazwisko</label>
-            <input type="text" formControlName="lastname"
-                   placeholder=""
-                   maxlength="255"
-                   class="form-control">
-            <div
-              class="help-block with-errors"
-              *ngIf="registerForm.controls['lastname'].invalid &&
-            (registerForm.controls['lastname'].touched || formSubmitted)">
-              To pole jest wymagane.</div>
+
+          <div class="row">
+            <div class="col-md-12">
+              <input type="text" formControlName="eventId" class="hidden">
+
+              <div class="form-group required" [ngClass]="{'has-error': registerForm.controls['firstName'].invalid &&
+          (registerForm.controls['firstName'].touched || formSubmitted) }">
+                <label class="control-label">Imię</label>
+                <input type="text" formControlName="firstName"
+                       placeholder=""
+                       maxlength="255"
+                       class="form-control">
+                <div
+                  class="help-block with-errors"
+                  *ngIf="registerForm.controls['firstName'].invalid &&
+            (registerForm.controls['firstName'].touched || formSubmitted)">
+                  To pole jest wymagane.</div>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-12">
-          <div class="form-group required" [ngClass]="{'has-error': registerForm.controls['email'].invalid &&
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group required" [ngClass]="{'has-error': registerForm.controls['lastName'].invalid &&
+          (registerForm.controls['lastName'].touched || formSubmitted) }">
+                <label class="control-label">Nazwisko</label>
+                <input type="text" formControlName="lastName"
+                       placeholder=""
+                       maxlength="255"
+                       class="form-control">
+                <div
+                  class="help-block with-errors"
+                  *ngIf="registerForm.controls['lastName'].invalid &&
+            (registerForm.controls['lastName'].touched || formSubmitted)">
+                  To pole jest wymagane.</div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group required" [ngClass]="{'has-error': registerForm.controls['email'].invalid &&
           (registerForm.controls['email'].touched || formSubmitted) }">
-            <label class="control-label">Email</label>
-            <input type="email" formControlName="email"
-                   placeholder=""
-                   maxlength="255"
-                   class="form-control">
-            <div
-              class="help-block with-errors"
-              *ngIf="registerForm.controls['email'].invalid &&
+                <label class="control-label">Email</label>
+                <input type="email" formControlName="email"
+                       placeholder=""
+                       maxlength="255"
+                       class="form-control">
+                <div
+                  class="help-block with-errors"
+                  *ngIf="registerForm.controls['email'].invalid &&
             (registerForm.controls['email'].touched || formSubmitted)">
-            <div *ngIf="registerForm.controls['email'].errors.required">To pole jest wymagane.</div>
-              <div *ngIf="!registerForm.controls['email'].errors.required &&
+                  <div *ngIf="registerForm.controls['email'].errors.required">To pole jest wymagane.</div>
+                  <div *ngIf="!registerForm.controls['email'].errors.required &&
               registerForm.controls['email'].errors.email">Niepoprawny format.</div>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-12">
-          <div class="form-group required" [ngClass]="{'has-error': registerForm.controls['phone'].invalid &&
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group required" [ngClass]="{'has-error': registerForm.controls['phone'].invalid &&
           (registerForm.controls['phone'].touched || formSubmitted) }">
-            <label class="control-label">Telefon kontaktowy</label>
-            <input type="text" formControlName="phone"
-                   placeholder=""
-                   maxlength="255"
-                   class="form-control">
-            <div
-              class="help-block with-errors"
-              *ngIf="registerForm.controls['phone'].invalid &&
+                <label class="control-label">Telefon kontaktowy</label>
+                <input type="text" formControlName="phone"
+                       placeholder=""
+                       maxlength="255"
+                       class="form-control">
+                <div
+                  class="help-block with-errors"
+                  *ngIf="registerForm.controls['phone'].invalid &&
             (registerForm.controls['phone'].touched || formSubmitted)">
-              <div *ngIf="registerForm.controls['phone'].errors.required">To pole jest wymagane.</div>
-              <div *ngIf="!registerForm.controls['phone'].errors.required &&
+                  <div *ngIf="registerForm.controls['phone'].errors.required">To pole jest wymagane.</div>
+                  <div *ngIf="!registerForm.controls['phone'].errors.required &&
               registerForm.controls['phone'].errors.phone">Niepoprawny format.</div>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
 
-      <div class="row">
-        <div class="col-md-12">
-          <div class="form-group" [ngClass]="{'has-error': registerForm.controls['notes'].invalid &&
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group" [ngClass]="{'has-error': registerForm.controls['notes'].invalid &&
           (registerForm.controls['notes'].touched || formSubmitted) }">
-            <label class="control-label">Uwagi dodatkowe</label>
-            <textarea formControlName="notes"
-                   placeholder=""
-                   class="form-control"
-                    maxlength="500"
+                <label class="control-label">Uwagi dodatkowe</label>
+                <textarea formControlName="notes"
+                          placeholder=""
+                          class="form-control"
+                          maxlength="500"
                 >
               </textarea>
-            <div
-              class="help-block with-errors"
-              *ngIf="registerForm.controls['notes'].invalid &&
+                <div
+                  class="help-block with-errors"
+                  *ngIf="registerForm.controls['notes'].invalid &&
             (registerForm.controls['notes'].touched || formSubmitted)">
-              To pole jest wymagane.</div>
+                  To pole jest wymagane.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12">
+              <h4>Zgody:</h4>
+            </div>
+          </div>
+
+          <fieldset formGroupName="marketingAgreements">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" formControlName="checkAll" (click)="selectAll()">
+                      Zaznacz wszystko
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group required" [ngClass]="{'has-error': registerForm.controls.marketingAgreements.controls['register'].invalid &&
+          (registerForm.controls.marketingAgreements.controls['register'].touched || formSubmitted)}">
+                  <div class="checkbox">
+                    <label class="control-label">
+                      <input type="checkbox" formControlName="register">
+                      Zgoda na przetwarzanie danych w celach rejestracji …
+                      <span class="normal" (click)="$event.preventDefault(); isCollapsedRegister = !isCollapsedRegister">
+                    &lt;{{(isCollapsedRegister) ? 'rozwiń' : 'zwiń'}}&gt;
+                  </span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12" [collapse]="isCollapsedRegister"
+                   [ngClass]="{'error': registerForm.controls.marketingAgreements.controls['register'].invalid &&
+          (registerForm.controls.marketingAgreements.controls['register'].touched || formSubmitted)}">
+                Wyrażam zgodę na przetwarzanie moich danych osobowych oraz ich gromadzenie przez EVENEM Sp.
+
+                z o.o. z siedzibą w Mysłowicach (adres: Obrzeżna Północna 17, 41 – 400 Mysłowice) zgodnie z ustawą
+
+                z dn. 29 sierpnia 1997 r. o ochronie danych osobowych (Dz. U. z 2002 r. Nr 101, poz. 926 z późn. zm.)
+
+                w celach związanych z rejestracją zgłoszenia udziału w konferencji. Niniejsza zgoda obejmuje
+
+                przetwarzanie i gromadzenie danych osobowych w przyszłości, o ile nie zmieni się cel przetwarzania i
+
+                gromadzenia danych, zarówno na terytorium Rzeczypospolitej Polskiej, jak i poza jej granicami.
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group" [ngClass]="{'has-error': registerForm.controls.marketingAgreements.controls['marketing'].invalid &&
+          (registerForm.controls.marketingAgreements.controls['marketing'].touched || formSubmitted)}">
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" formControlName="marketing">
+                      Zgoda na przetwarzanie danych w celach marketingowych…
+                      <span class="normal" (click)="$event.preventDefault(); isCollapsedMarketing = !isCollapsedMarketing">
+                    &lt;{{(isCollapsedMarketing) ? 'rozwiń' : 'zwiń'}}&gt;
+                  </span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12" [collapse]="isCollapsedMarketing"
+                   [ngClass]="{'error': registerForm.controls.marketingAgreements.controls['marketing'].invalid &&
+          (registerForm.controls.marketingAgreements.controls['marketing'].touched || formSubmitted)}">
+                Wyrażam zgodę na przetwarzanie moich danych osobowych oraz ich gromadzenie przez EVENEM Sp. z o.o. z siedzibą w Mysłowicach (adres: Obrzeżna Północna 17, 41 – 400 Mysłowice) zgodnie z ustawą z dn. 29 sierpnia 1997 r. o ochronie danych osobowych (Dz. U. z 2002 r. Nr 101, poz. 926 z późn. zm.) w celach marketingowych obejmujące przesyłanie informacji drogą poczty elektronicznej e-mail. Niniejsza zgoda obejmuje przetwarzanie i gromadzenie danych osobowych w przyszłości, o ile nie zmieni się cel przetwarzania i gromadzenia danych, zarówno na terytorium Rzeczypospolitej Polskiej, jak i poza jej granicami.
+              </div>
+            </div>
+
+          </fieldset>
+          <div class="row">
+            <div class="col-md-12">
+              <button type="submit" class="btn btn-primary pull-right">Zarejestruj</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </form>
+  </div>
+  <!--<div class="col-md-4">-->
+    <!--<div class="row">-->
+      <!--<div class="col-md-12">-->
+        <!--<div class="panel panel-default panel-event">-->
+          <!--<div class="panel-body" style="padding-left: 40px">-->
+            <!--<div class="row">-->
+              <!--<div class="col-md-5">-->
+                <!--<h4><i class="fa fa-industry" aria-hidden="true"></i></h4>-->
+              <!--</div>-->
+              <!--<div class="col-md-6">-->
+                <!--<h4>{{event?.city}}</h4>-->
+              <!--</div>-->
+            <!--</div>-->
+            <!--<div class="row">-->
+              <!--<div class="col-md-6">-->
+                <!--<h4><i class="fa fa-money" aria-hidden="true"></i></h4>-->
+              <!--</div>-->
+              <!--<div class="col-md-6">-->
+                <!--<h4>{{event?.price ? event?.price + ' zł' : ''}}</h4>-->
+              <!--</div>-->
+            <!--</div>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</div>-->
+  <!--</div>-->
+  <div class="col-md-4">
+    <div class="row">
+      <div class="col-md-12">
+      <div class="panel panel-default panel-event">
+        <div class="panel-body text-center">
+          <h5>Płatność realizowana przez</h5>
+          <img src="assets/img/tpay.png" class="img-responsive" />
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12 text-center">
+    <small>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="help-block margin-top-40">
+            Administratorem danych osobowych Użytkowników będącymi osobami fizycznymi,
+            zgodnie z ustawą z dnia 29 sierpnia 1997 roku o ochronie danych osobowych jest EVENEM Sp. z o.o. z siedzibą w Mysłowicach 41-400, ul. Obrzeżna Północna 17.
           </div>
         </div>
       </div>
 
       <div class="row">
         <div class="col-md-12">
-          <h4>Zgody:</h4>
-        </div>
-      </div>
-
-      <fieldset formGroupName="marketingAgreements">
-        <div class="row">
-          <div class="col-md-12">
-            <div class="form-group">
-              <div class="checkbox">
-                <label>
-                  <input type="checkbox" formControlName="checkAll" (click)="selectAll()">
-                  Zaznacz wszystko
-                </label>
-              </div>
-            </div>
+          <div class="help-block">
+            Dane osobowe są przetwarzane przez EVENEM Sp. z o.o. zgodnie z przepisami ustawy z dnia 29 sierpnia 1997 roku o ochronie danych osobowych oraz ustawy z dnia 18 lipca 2002 roku o świadczeniu usług drogą elektroniczną.
           </div>
         </div>
+      </div>
 
-        <div class="row">
-          <div class="col-md-12">
-            <div class="form-group required" [ngClass]="{'has-error': registerForm.controls.marketingAgreements.controls['register'].invalid &&
-          (registerForm.controls.marketingAgreements.controls['register'].touched || formSubmitted)}">
-              <div class="checkbox">
-                <label class="control-label">
-                  <input type="checkbox" formControlName="register">
-                    Zgoda na przetwarzanie danych w celach rejestracji …
-                  <span class="normal" (click)="$event.preventDefault(); isCollapsedRegister = !isCollapsedRegister">
-                    &lt;{{(isCollapsedRegister) ? 'rozwiń' : 'zwiń'}}&gt;
-                  </span>
-                </label>
-              </div>
-            </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="help-block">
+            EVENEM Sp. z o.o. przetwarza dane osobowe w celach związanych z nawiązaniem, ukształtowaniem treści, zmiany lub rozwiązania stosunku prawnego oraz w zakresie niezbędnym do prawidłowego świadczenia usług i korzystania z konta rejestrowanego w portalu www.evenem.pl.
           </div>
         </div>
-        <div class="row">
-          <div class="col-md-12" [collapse]="isCollapsedRegister"
-               [ngClass]="{'error': registerForm.controls.marketingAgreements.controls['register'].invalid &&
-          (registerForm.controls.marketingAgreements.controls['register'].touched || formSubmitted)}">
-            Wyrażam zgodę na przetwarzanie moich danych osobowych oraz ich gromadzenie przez EVENEM Sp.
+      </div>
 
-            z o.o. z siedzibą w Mysłowicach (adres: Obrzeżna Północna 17, 41 – 400 Mysłowice) zgodnie z ustawą
-
-            z dn. 29 sierpnia 1997 r. o ochronie danych osobowych (Dz. U. z 2002 r. Nr 101, poz. 926 z późn. zm.)
-
-            w celach związanych z rejestracją zgłoszenia udziału w konferencji. Niniejsza zgoda obejmuje
-
-            przetwarzanie i gromadzenie danych osobowych w przyszłości, o ile nie zmieni się cel przetwarzania i
-
-            gromadzenia danych, zarówno na terytorium Rzeczypospolitej Polskiej, jak i poza jej granicami.
+      <div class="row">
+        <div class="col-md-12">
+          <div class="help-block">
+            Użytkownik otrzymywać będzie informacje marketingowe i handlowe wyłącznie w przypadku gdy wyrazi na to zgodę.
           </div>
         </div>
+      </div>
 
-        <div class="row">
-          <div class="col-md-12">
-            <div class="form-group" [ngClass]="{'has-error': registerForm.controls.marketingAgreements.controls['marketing'].invalid &&
-          (registerForm.controls.marketingAgreements.controls['marketing'].touched || formSubmitted)}">
-              <div class="checkbox">
-                <label>
-                  <input type="checkbox" formControlName="marketing">
-                  Zgoda na przetwarzanie danych w celach marketingowych…
-                  <span class="normal" (click)="$event.preventDefault(); isCollapsedMarketing = !isCollapsedMarketing">
-                    &lt;{{(isCollapsedMarketing) ? 'rozwiń' : 'zwiń'}}&gt;
-                  </span>
-                </label>
-              </div>
-            </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="help-block">
+            Użytkownik ma umożliwione przez EVENEM Sp. z o.o. prawo dostępu do gromadzonych własnych danych osobowych, prawo ich poprawiania, prawo do kontroli przetwarzania własnych danych osobowych na zasadach przewidzianych w obowiązujących przepisach prawa, prawo do wniesienia pisemnego żądania zaprzestania przetwarzania danych osobowych oraz prawo wniesienia sprzeciwu wobec przetwarzania danych w celach marketingowych.
           </div>
         </div>
-        <div class="row">
-          <div class="col-md-12" [collapse]="isCollapsedMarketing"
-               [ngClass]="{'error': registerForm.controls.marketingAgreements.controls['marketing'].invalid &&
-          (registerForm.controls.marketingAgreements.controls['marketing'].touched || formSubmitted)}">
-            Wyrażam zgodę na przetwarzanie moich danych osobowych oraz ich gromadzenie przez EVENEM Sp. z o.o. z siedzibą w Mysłowicach (adres: Obrzeżna Północna 17, 41 – 400 Mysłowice) zgodnie z ustawą z dn. 29 sierpnia 1997 r. o ochronie danych osobowych (Dz. U. z 2002 r. Nr 101, poz. 926 z późn. zm.) w celach marketingowych obejmujące przesyłanie informacji drogą poczty elektronicznej e-mail. Niniejsza zgoda obejmuje przetwarzanie i gromadzenie danych osobowych w przyszłości, o ile nie zmieni się cel przetwarzania i gromadzenia danych, zarówno na terytorium Rzeczypospolitej Polskiej, jak i poza jej granicami.
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <div class="help-block">
+            EVENEM Sp. z o.o. chroni dane osobowe Użytkowników przed ich udostępnieniem osobom nieupoważnionym,
+            w tym także przed innymi przypadkami ujawnienia tych danych, bądź ich utraty i bezprawną modyfikacją.
           </div>
         </div>
-
-      </fieldset>
-  <small>
-    <div class="row">
-      <div class="col-md-12">
-        <div class="help-block margin-top-40">
-          1. Administratorem danych osobowych Użytkowników będącymi osobami fizycznymi,
-          zgodnie z ustawą z dnia 29 sierpnia 1997 roku o ochronie danych osobowych jest EVENEM Sp. z o.o. z siedzibą w Mysłowicach 41-400, ul. Obrzeżna Północna 17.
-        </div>
       </div>
-    </div>
-
-  <div class="row">
-    <div class="col-md-12">
-      <div class="help-block">
-        2. Dane osobowe są przetwarzane przez EVENEM Sp. z o.o. zgodnie z przepisami ustawy z dnia 29 sierpnia 1997 roku o ochronie danych osobowych oraz ustawy z dnia 18 lipca 2002 roku o świadczeniu usług drogą elektroniczną.
-      </div>
-    </div>
+    </small>
   </div>
-
-  <div class="row">
-    <div class="col-md-12">
-      <div class="help-block">
-        3. EVENEM Sp. z o.o. przetwarza dane osobowe w celach związanych z nawiązaniem, ukształtowaniem treści, zmiany lub rozwiązania stosunku prawnego oraz w zakresie niezbędnym do prawidłowego świadczenia usług i korzystania z konta rejestrowanego w portalu www.evenem.pl.
-      </div>
-    </div>
-  </div>
-
-
-  <div class="row">
-    <div class="col-md-12">
-      <div class="help-block">
-        4. Użytkownik otrzymywać będzie informacje marketingowe i handlowe wyłącznie w przypadku gdy wyrazi na to zgodę.
-      </div>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-md-12">
-      <div class="help-block">
-        5. Użytkownik ma umożliwione przez EVENEM Sp. z o.o. prawo dostępu do gromadzonych własnych danych osobowych, prawo ich poprawiania, prawo do kontroli przetwarzania własnych danych osobowych na zasadach przewidzianych w obowiązujących przepisach prawa, prawo do wniesienia pisemnego żądania zaprzestania przetwarzania danych osobowych oraz prawo wniesienia sprzeciwu wobec przetwarzania danych w celach marketingowych.
-      </div>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-md-12">
-      <div class="help-block">
-        6. EVENEM Sp. z o.o. chroni dane osobowe Użytkowników przed ich udostępnieniem osobom nieupoważnionym,
-          w tym także przed innymi przypadkami ujawnienia tych danych, bądź ich utraty i bezprawną modyfikacją.
-      </div>
-    </div>
-  </div>
-  </small>
-  <div class="row">
-    <div class="col-md-12">
-      <button type="submit" class="btn btn-default pull-right">Wyślij</button>
-    </div>
-  </div>
-
 </div>
-</div>
-  </form>
+</section>
+
 </div>

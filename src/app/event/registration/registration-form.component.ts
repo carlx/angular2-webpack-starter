@@ -1,12 +1,13 @@
-import {Component, OnInit, OnDestroy, EventEmitter} from '@angular/core';
-import {FormGroup, FormControl, Validators, FormBuilder} from '@angular/forms';
-import {validateCheckBox} from '../../shared/validators/checkbox.validator';
-import {validateEmail} from '../../shared/validators/email.validator';
-import {validatePhone} from '../../shared/validators/phone.validator';
-import {Router, ActivatedRoute} from '@angular/router';
-import {EventsService} from '../../shared/services/events.service';
+import { Component, OnInit, OnDestroy, Inject } from '@angular/core';
+import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { validateCheckBox } from '../../shared/validators/checkbox.validator';
+import { validateEmail } from '../../shared/validators/email.validator';
+import { validatePhone } from '../../shared/validators/phone.validator';
+import { Router, ActivatedRoute } from '@angular/router';
+import { EventsService } from '../../shared/services/events.service';
 import { Subscription, Observable } from 'rxjs';
-import {LoaderService} from '../../shared/services/loader.service';
+import { LoaderService } from '../../shared/services/loader.service';
+import {RegistrationService} from '../../shared/services/registration.service';
 
 @Component({
   selector: 'registration-form',
@@ -23,27 +24,32 @@ export class RegistrationFormComponent implements OnInit, OnDestroy {
   subscription: Subscription;
   isRunning: Observable<boolean>;
 
-  public eventId: string;
+  event: Object;
 
-  public isCollapsedRegister:boolean = false;
-  public isCollapsedMarketing:boolean = false;
 
+  public isCollapsedRegister:boolean = true;
+  public isCollapsedMarketing:boolean = true;
   public register: FormControl = new FormControl(false, validateCheckBox);
   public checkAll: FormControl = new FormControl(false);
   public marketing: FormControl = new FormControl(false);
+  public eventId: FormControl = new FormControl(null, Validators.required);
 
   constructor(
     private _formBuilder: FormBuilder,
     private _router: Router,
     private _eventsService: EventsService,
     private _route: ActivatedRoute,
-    private _loaderService: LoaderService
+    private _registrationService: RegistrationService,
+    private _loaderService: LoaderService,
+    @Inject('windowRef') private _windowRef: any
   ) {}
 
   ngOnInit() {
+
     this.registerForm = this._formBuilder.group({
-      firstname: new FormControl('', Validators.required),
-      lastname: new FormControl('', Validators.required),
+      eventId: this.eventId,
+      firstName: new FormControl('', Validators.required),
+      lastName: new FormControl('', Validators.required),
       email: new FormControl('', [Validators.required, validateEmail]),
       phone: new FormControl('', [Validators.required, validatePhone]),
       notes: new FormControl(''),
@@ -55,11 +61,17 @@ export class RegistrationFormComponent implements OnInit, OnDestroy {
     });
 
     this.isRunning = this._loaderService.contentIsLoading$;
-
-    this.subscription = this._route.params.subscribe((param: Object) => {
-      this.eventId = param['eventId'];
-      console.log(param);
+    this._loaderService.contentIsLoading$.next(true);
+    this._route.params.flatMap((param: any) => {
+      this.eventId.patchValue(param['eventId']);
+      return this._eventsService.getEventById(param.eventId)
+    }).subscribe((result: Object) => {
+      this._loaderService.contentIsLoading$.next(false);
+      this.event = result;
+    }, (error: any) => {
+      this._loaderService.contentIsLoading$.next(false);
     });
+
 
   }
 
@@ -69,12 +81,20 @@ export class RegistrationFormComponent implements OnInit, OnDestroy {
 
   submitForm() {
     this.formSubmitted = true;
-    this._eventsService.getEventById(this.eventId)
-      .subscribe((result: any) => { console.log(result); });
-    //console.log(this._eventsService.getEventById(''));
-    //this._router.navigate(['registration', 123]);
+    if(this.registerForm.invalid) return null;
+
     this._loaderService.contentIsLoading$.next(true);
-    setTimeout(() => { this._loaderService.contentIsLoading$.next(false); }, 2000)
+    this._registrationService.registerToEvent(this.registerForm.value)
+      .subscribe((result: any) => {
+        if(result.paymentLink) {
+          setTimeout(() => {
+            this._windowRef.location.href = result.paymentLink;
+            this._loaderService.contentIsLoading$.next(true);
+          }, 2000);
+        }
+      }, (error: any) => {
+        this._loaderService.contentIsLoading$.next(false);
+      });
   }
 
   selectAll() {
@@ -87,6 +107,7 @@ export class RegistrationFormComponent implements OnInit, OnDestroy {
     }
 
   }
+
 
 
 }
