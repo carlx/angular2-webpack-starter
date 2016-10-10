@@ -16,8 +16,6 @@ import {RegistrationFormComponent} from './registration-form.component';
 import {ComponentFixture} from '@angular/core/testing/component_fixture';
 import {AppModule} from '../../app.module';
 
-
-
 let comp:    RegistrationFormComponent;
 let fixture: ComponentFixture<RegistrationFormComponent>;
 
