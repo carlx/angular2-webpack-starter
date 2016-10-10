@@ -1,12 +1,12 @@
-import { Injectable, Inject } from '@angular/core';
-import { HttpModule, Http, Response } from '@angular/http';
+import { Injectable } from '@angular/core';
+import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs';
 import { ToasterService } from 'angular2-toaster/angular2-toaster';
 import {AppConfigService} from './app-config.service';
 
 
 @Injectable()
-export class EventsService {
+export class RegistrationService {
 
   constructor(
     private _http: Http,
@@ -16,9 +16,8 @@ export class EventsService {
 
   }
 
-  public getEventById(eventId: string) {
-    console.log(eventId);
-    return this._http.get(`${this._appConfig.getHostName()}/events/${eventId}`)
+  public registerToEvent(registerData: Object) {
+    return this._http.post(`${this._appConfig.getHostName()}/registrations/`, registerData)
       .map((response: Response) => { return response.json(); })
       .catch((error) => this.handleError(error));
   }

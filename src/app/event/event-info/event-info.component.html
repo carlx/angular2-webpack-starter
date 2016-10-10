@@ -1,36 +1,46 @@
-<div class="jumbotron margin-top-40" *ngIf="!(isRunning | async)">
-  <div class="container">
-<div class="row">
-  <div class="col-md-2">
-    <h4>Wydarzenie:</h4>
+<div class="row" [hidden]="(isRunning | async)">
+    <div class="col-md-12">
+      <ul class="event-list">
+        <li>
+          <time datetime="2014-07-20">
+            <span class="day">{{event?.date.format('DD')}}</span>
+            <span class="month">{{event?.date.format('MMM')}}</span>
+            <span class="year">{{event?.date.format('YYYY')}}</span>
+            <span class="time">ALL DAY</span>
+          </time>
+          <img alt="" src="assets/img/conference.gif">
+          <div class="info">
+            <h2>{{event?.title}}</h2>
+            <h6>{{event?.description}}</h6>
+            <ul>
+              <li style="width:50%;">
+                <span class="fa fa-industry"></span>
+                {{event?.city}}
+              </li>
+              <li style="width:50%;">
+                <span class="fa fa-money"></span>
+                {{event?.price ? event?.price + ' zł' : ''}}
+              </li>
+            </ul>
+          </div>
+          <div class="social">
+            <ul>
+              <li class="facebook" style="width:33%;">
+                <a href="http://facebook.com"><span class="fa fa-facebook"></span>
+                </a>
+              </li>
+              <li class="twitter" style="width:34%;">
+                <a href="http://twitter.com"><span class="fa fa-twitter"></span>
+                </a>
+              </li>
+              <li class="google-plus" style="width:33%;">
+                <a href="http://plus.google.com"><span class="fa fa-google-plus"></span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+    </div>
   </div>
-  <div class="col-md-10">
-    <h4>{{event?.title}}</h4>
-  </div>
-</div>
-<div class="row">
-  <div class="col-md-2">
-    <h4>Opis:</h4>
-  </div>
-  <div class="col-md-10">
-    <h4>{{event?.description}}</h4>
-  </div>
-</div>
-<div class="row">
-  <div class="col-md-2">
-    <h4>Cena:</h4>
-  </div>
-  <div class="col-md-10">
-    <h4>{{event?.price}}</h4>
-  </div>
-</div>
-<div class="row">
-  <div class="col-md-2">
-    <h4>Miejsce:</h4>
-  </div>
-  <div class="col-md-10">
-    <h4>{{event?.city}}</h4>
-  </div>
-</div>
-  </div>
-</div>
+

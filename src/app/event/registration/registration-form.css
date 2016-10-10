@@ -12,5 +12,31 @@
 }
 
 .margin-top-40 {
-  margin-top: 40px;
+  margin-top: 10px;
 }
+
+.panel-event {
+  border-radius: 0px;
+}
+
+.panel-event input, button {
+  border-radius: 0px;
+}
+
+.panel-event textarea {
+  border-radius: 0px;
+  resize: vertical;
+}
+
+.panel-event h4 {
+  font-family: 'latin', sans-serif;
+}
+
+.panel-event .control-label {
+  font-family: 'Lato';
+}
+
+.panel-event .with-errors {
+  font-size: 12px;
+}
+

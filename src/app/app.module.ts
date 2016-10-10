@@ -19,6 +19,8 @@ import {MaterialModule} from '@angular/material';
 import {EventsService} from './shared/services/events.service';
 import {ToasterModule} from 'angular2-toaster/angular2-toaster';
 import {LoaderService} from './shared/services/loader.service';
+import {AppConfigService} from './shared/services/app-config.service';
+import {RegistrationService} from './shared/services/registration.service';
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -52,7 +54,10 @@ type StoreType = {
     ENV_PROVIDERS,
     APP_PROVIDERS,
     EventsService,
+    AppConfigService,
+    RegistrationService,
     {provide: 'Environment', useValue: ENV},
+    {provide: 'windowRef', useValue: window},
     LoaderService
   ]
 })

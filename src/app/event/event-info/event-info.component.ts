@@ -1,45 +1,40 @@
-import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
-import {EventsService} from '../../shared/services/events.service';
-import {LoaderService} from '../../shared/services/loader.service';
+import {Component, OnInit, Input, OnChanges, SimpleChanges} from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { EventsService } from '../../shared/services/events.service';
+import { LoaderService } from '../../shared/services/loader.service';
 import { Observable } from 'rxjs';
+import * as moment from 'moment/moment';
 
 
 @Component({
   selector: 'event-info',
   templateUrl: 'event-info.component.html',
+  styles: [require('./event-info.css')]
 })
 
-export class EventInfoComponent implements OnInit {
+export class EventInfoComponent implements OnInit, OnChanges {
 
-  event: Object;
   isRunning: Observable<boolean>;
+  @Input() event: Object;
+  date: any;
 
   constructor(
     private _eventsService: EventsService,
     private _route: ActivatedRoute,
     private _loaderService: LoaderService
   ) {
-
+    moment.locale('pl');
+    this.date = moment();
   }
 
   ngOnInit() {
     this.isRunning = this._loaderService.contentIsLoading$;
-    this._loaderService.contentIsLoading$.next(true);
-    this._route.params.flatMap((param: any) => {
-      return this._eventsService.getEventById(param.eventId)
-    }).subscribe((result: Object) => {
-      setTimeout(() => {
-        this._loaderService.contentIsLoading$.next(false);
-      }, 4000);
-      console.log(result);
-      this._loaderService.contentIsLoading$.next(false);
-      this.event = result;
-    }, (error: any) => {
-      this._loaderService.contentIsLoading$.next(false);
-    });
+  }
 
-
+  ngOnChanges(changes: SimpleChanges) {
+    if(changes['event'] && changes['event'].currentValue) {
+      changes['event'].currentValue['date'] = moment(changes['event'].currentValue['date']);
+    }
   }
 
 }
