@@ -10,6 +10,7 @@ import {RegistrationFormComponent} from './registration/registration-form.compon
 import {FailureComponent} from './registration/failure.component';
 import {SpinnerComponent} from '../shared/components/spinner/spinner.component';
 import {NegatePipe} from '../shared/pipes/negate.pipe';
+import {EvenemInfoComponent} from './registration/evenem-info.component';
 
 @NgModule({
   imports: [
@@ -24,7 +25,8 @@ import {NegatePipe} from '../shared/pipes/negate.pipe';
     FailureComponent,
     EventInfoComponent,
     SpinnerComponent,
-    NegatePipe
+    NegatePipe,
+    EvenemInfoComponent
   ],
   exports: [
     RegistrationFormComponent,

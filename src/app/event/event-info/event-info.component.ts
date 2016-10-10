@@ -16,18 +16,16 @@ export class EventInfoComponent implements OnInit, OnChanges {
 
   isRunning: Observable<boolean>;
   @Input() event: Object;
-  date: any;
 
   constructor(
     private _eventsService: EventsService,
     private _route: ActivatedRoute,
     private _loaderService: LoaderService
   ) {
-    moment.locale('pl');
-    this.date = moment();
   }
 
   ngOnInit() {
+    moment.locale('pl');
     this.isRunning = this._loaderService.contentIsLoading$;
   }
 
