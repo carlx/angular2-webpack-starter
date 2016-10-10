@@ -11,6 +11,7 @@ import {FailureComponent} from './registration/failure.component';
 import {SpinnerComponent} from '../shared/components/spinner/spinner.component';
 import {NegatePipe} from '../shared/pipes/negate.pipe';
 import {EvenemInfoComponent} from './registration/evenem-info.component';
+import {TimeDirective} from '../shared/directives/time.directive';
 
 @NgModule({
   imports: [
@@ -26,7 +27,8 @@ import {EvenemInfoComponent} from './registration/evenem-info.component';
     EventInfoComponent,
     SpinnerComponent,
     NegatePipe,
-    EvenemInfoComponent
+    EvenemInfoComponent,
+    TimeDirective
   ],
   exports: [
     RegistrationFormComponent,
