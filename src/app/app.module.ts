@@ -1,8 +1,8 @@
 import { NgModule, ApplicationRef } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import {RouterModule} from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { removeNgStyles, createNewHosts, createInputTransfer } from '@angularclass/hmr';
 
 /*
@@ -14,13 +14,13 @@ import { ROUTES } from './app.routes';
 import { App } from './app.component';
 import { APP_RESOLVER_PROVIDERS } from './app.resolver';
 import { AppState, InteralStateType } from './app.service';
-import {EventsModule} from './event/events.module';
-import {MaterialModule} from '@angular/material';
-import {EventsService} from './shared/services/events.service';
-import {ToasterModule} from 'angular2-toaster/angular2-toaster';
-import {LoaderService} from './shared/services/loader.service';
-import {AppConfigService} from './shared/services/app-config.service';
-import {RegistrationService} from './shared/services/registration.service';
+import { EventsModule } from './event/events.module';
+import { EventsService } from './shared/services/events.service';
+import { ToasterModule } from 'angular2-toaster/angular2-toaster';
+import { LoaderService } from './shared/services/loader.service';
+import { AppConfigService } from './shared/services/app-config.service';
+import { RegistrationService } from './shared/services/registration.service';
+import {LocationStrategy, HashLocationStrategy} from '@angular/common';
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -56,6 +56,7 @@ type StoreType = {
     EventsService,
     AppConfigService,
     RegistrationService,
+    {provide: LocationStrategy, useClass: HashLocationStrategy},
     {provide: 'Environment', useValue: ENV},
     {provide: 'windowRef', useValue: window},
     LoaderService

@@ -18,7 +18,8 @@ import {TimeDirective} from '../shared/directives/time.directive';
     ReactiveFormsModule,
     CollapseModule,
     CommonModule,
-    FormsModule
+    FormsModule,
+    RouterModule.forChild(EVENTS_ROUTES)
   ],
   declarations: [
     RegistrationFormComponent,

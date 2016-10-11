@@ -41,11 +41,12 @@ export class RegistrationFormComponent implements OnInit, OnDestroy {
     private _route: ActivatedRoute,
     private _registrationService: RegistrationService,
     private _loaderService: LoaderService,
-    @Inject('windowRef') private _windowRef: any
+    @Inject('windowRef') private _windowRef: any,
+    @Inject('Environment') private _env: string
   ) {}
 
   ngOnInit() {
-
+    console.log('Running in %s', this._env);
     this.registerForm = this._formBuilder.group({
       eventId: this.eventId,
       firstName: new FormControl('', Validators.required),
@@ -76,7 +77,8 @@ export class RegistrationFormComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.subscription.unsubscribe();
+    if(this.subscription)
+      this.subscription.unsubscribe();
   }
 
   submitForm() {
