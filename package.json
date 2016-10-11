@@ -42,7 +42,7 @@
     "server:prod": "http-server dist --cors",
     "server": "npm run server:dev",
     "start:hmr": "npm run server:dev:hmr",
-    "start": "npm run build:prod && node heroku.js",
+    "start": "npm run build",
     "test": "karma start",
     "tslint": "tslint",
     "typedoc": "typedoc",
