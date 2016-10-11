@@ -56,7 +56,8 @@
     "webdriver:start": "npm run webdriver-manager start",
     "webdriver:update": "npm run webdriver-manager update",
     "webpack-dev-server": "webpack-dev-server",
-    "webpack": "webpack"
+    "webpack": "webpack",
+    "heroku-postbuild": "npm run build"
   },
   "dependencies": {
     "@angular/common": "2.0.0",
