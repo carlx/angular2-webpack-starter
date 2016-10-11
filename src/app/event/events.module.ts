@@ -12,6 +12,7 @@ import {SpinnerComponent} from '../shared/components/spinner/spinner.component';
 import {NegatePipe} from '../shared/pipes/negate.pipe';
 import {EvenemInfoComponent} from './registration/evenem-info.component';
 import {TimeDirective} from '../shared/directives/time.directive';
+import {SummaryComponent} from './registration/summary.component';
 
 @NgModule({
   imports: [
@@ -29,7 +30,8 @@ import {TimeDirective} from '../shared/directives/time.directive';
     SpinnerComponent,
     NegatePipe,
     EvenemInfoComponent,
-    TimeDirective
+    TimeDirective,
+    SummaryComponent
   ],
   exports: [
     RegistrationFormComponent,
