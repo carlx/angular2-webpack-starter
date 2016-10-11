@@ -42,7 +42,7 @@
     "server:prod": "http-server dist --cors",
     "server": "npm run server:dev",
     "start:hmr": "npm run server:dev:hmr",
-    "start": "npm run build",
+    "start": "npm hero",
     "test": "karma start",
     "tslint": "tslint",
     "typedoc": "typedoc",
@@ -57,7 +57,7 @@
     "webdriver:update": "npm run webdriver-manager update",
     "webpack-dev-server": "webpack-dev-server",
     "webpack": "webpack",
-    "heroku-postbuild": "npm run build && node heroku.js"
+    "heroku-postbuild": "npm run build"
   },
   "dependencies": {
     "@angular/common": "2.0.0",
