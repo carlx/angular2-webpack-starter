@@ -11,3 +11,6 @@ before_install:
 script:
   - npm test
 sudo: required
+branches:
+  only:
+  - master
