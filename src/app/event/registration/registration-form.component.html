@@ -16,7 +16,7 @@
           </div>
 
           <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-6">
               <input type="text" formControlName="eventId" class="hidden">
 
               <div class="form-group required" [ngClass]="{'has-error': registerForm.controls['firstName'].invalid &&
@@ -33,9 +33,7 @@
                   To pole jest wymagane.</div>
               </div>
             </div>
-          </div>
-          <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-6">
               <div class="form-group required" [ngClass]="{'has-error': registerForm.controls['lastName'].invalid &&
           (registerForm.controls['lastName'].touched || formSubmitted) }">
                 <label class="control-label">Nazwisko</label>
@@ -52,7 +50,7 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-6">
               <div class="form-group required" [ngClass]="{'has-error': registerForm.controls['email'].invalid &&
           (registerForm.controls['email'].touched || formSubmitted) }">
                 <label class="control-label">Email</label>
@@ -70,9 +68,7 @@
                 </div>
               </div>
             </div>
-          </div>
-          <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-6">
               <div class="form-group required" [ngClass]="{'has-error': registerForm.controls['phone'].invalid &&
           (registerForm.controls['phone'].touched || formSubmitted) }">
                 <label class="control-label">Telefon kontaktowy</label>
@@ -193,7 +189,7 @@
           </fieldset>
           <div class="row">
             <div class="col-md-12">
-              <button type="submit" class="btn btn-primary pull-right">Zarejestruj</button>
+              <button type="submit" class="btn btn-primary pull-right">Zarejestruj z obowiązkiem zapłaty</button>
             </div>
           </div>
 
@@ -201,32 +197,9 @@
       </div>
     </form>
   </div>
-  <!--<div class="col-md-4">-->
-    <!--<div class="row">-->
-      <!--<div class="col-md-12">-->
-        <!--<div class="panel panel-default panel-event">-->
-          <!--<div class="panel-body" style="padding-left: 40px">-->
-            <!--<div class="row">-->
-              <!--<div class="col-md-5">-->
-                <!--<h4><i class="fa fa-industry" aria-hidden="true"></i></h4>-->
-              <!--</div>-->
-              <!--<div class="col-md-6">-->
-                <!--<h4>{{event?.city}}</h4>-->
-              <!--</div>-->
-            <!--</div>-->
-            <!--<div class="row">-->
-              <!--<div class="col-md-6">-->
-                <!--<h4><i class="fa fa-money" aria-hidden="true"></i></h4>-->
-              <!--</div>-->
-              <!--<div class="col-md-6">-->
-                <!--<h4>{{event?.price ? event?.price + ' zł' : ''}}</h4>-->
-              <!--</div>-->
-            <!--</div>-->
-          <!--</div>-->
-        <!--</div>-->
-      <!--</div>-->
-    <!--</div>-->
-  <!--</div>-->
+  <div class="col-md-4">
+    <summary [event]="event"></summary>
+  </div>
   <div class="col-md-4">
     <div class="row">
       <div class="col-md-12">
