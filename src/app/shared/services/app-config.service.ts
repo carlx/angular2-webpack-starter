@@ -11,10 +11,10 @@ export class AppConfigService {
   ) {
     switch(_env) {
       case 'development':
-        this.hostname = 'https://flyevents.herokuapp.com';
+        this.hostname = 'https://tickets.flymore.com.pl';
         break;
       default:
-        this.hostname = 'https://flyevents.herokuapp.com';
+        this.hostname = 'https://tickets.flymore.com.pl';
         break;
     }
   }
