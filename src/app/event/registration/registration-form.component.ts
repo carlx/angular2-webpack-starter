@@ -65,7 +65,7 @@ export class RegistrationFormComponent implements OnInit, OnDestroy {
     this._loaderService.contentIsLoading$.next(true);
     this._route.params.flatMap((param: any) => {
       this.eventId.patchValue(param['eventId']);
-      return this._eventsService.getEventById(param.eventId)
+      return this._eventsService.getEventById(param.eventId);
     }).subscribe((result: Object) => {
       this._loaderService.contentIsLoading$.next(false);
       this.event = result;
@@ -73,6 +73,15 @@ export class RegistrationFormComponent implements OnInit, OnDestroy {
       this._loaderService.contentIsLoading$.next(false);
     });
 
+    this.checkAll.valueChanges.subscribe(result => {
+      if(result === true) {
+        this.register.patchValue(true);
+        this.marketing.patchValue(true);
+      } else {
+        this.register.patchValue(false);
+        this.marketing.patchValue(false);
+      }
+    });
 
   }
 
@@ -98,18 +107,6 @@ export class RegistrationFormComponent implements OnInit, OnDestroy {
         this._loaderService.contentIsLoading$.next(false);
       });
   }
-
-  selectAll() {
-    if (!this.checkAll.value) {
-      this.register.patchValue(true);
-      this.marketing.patchValue(true);
-    } else {
-      this.register.patchValue(false);
-      this.marketing.patchValue(false);
-    }
-
-  }
-
 
 
 }
