@@ -3,6 +3,7 @@ import { HttpModule, Http, Response } from '@angular/http';
 import { Observable } from 'rxjs';
 import { ToasterService } from 'angular2-toaster/angular2-toaster';
 import {AppConfigService} from './app-config.service';
+import {} from '../../../assets/mock-data/mock_event.json'
 
 
 @Injectable()
@@ -11,15 +12,17 @@ export class EventsService {
   constructor(
     private _http: Http,
     private _toastr: ToasterService,
-    private _appConfig: AppConfigService
+    private _appConfig: AppConfigService,
+    @Inject('Environment') private _env: string
   ) {
 
   }
 
   public getEventById(eventId: string) {
-    console.log(eventId);
     return this._http.get(`${this._appConfig.getHostName()}/events/${eventId}`)
-      .map((response: Response) => { return response.json(); })
+      .map((response:Response) => {
+        return response.json();
+      })
       .catch((error) => this.handleError(error));
   }
 
