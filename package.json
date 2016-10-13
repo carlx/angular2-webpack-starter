@@ -57,7 +57,7 @@
     "webdriver:update": "npm run webdriver-manager update",
     "webpack-dev-server": "webpack-dev-server",
     "webpack": "webpack",
-    "heroku-postbuild": "npm run build"
+    "heroku-postbuild": "npm run build:prod"
   },
   "dependencies": {
     "@angular/common": "2.0.0",
@@ -84,9 +84,7 @@
     "moment": "^2.15.1",
     "ng2-bootstrap": "^1.1.5",
     "rxjs": "5.0.0-beta.12",
-    "zone.js": "~0.6.17"
-  },
-  "devDependencies": {
+    "zone.js": "~0.6.17",
     "@types/hammerjs": "^2.0.33",
     "@types/jasmine": "^2.2.34",
     "@types/node": "^6.0.38",
@@ -141,9 +139,11 @@
     "url-loader": "^0.5.7",
     "webpack": "2.1.0-beta.22",
     "webpack-dev-middleware": "^1.6.1",
-    "webpack-dev-server": "2.1.0-beta.5",
+    "webpack-dev-server": "^2.1.0-beta.5",
     "webpack-md5-hash": "^0.0.5",
     "webpack-merge": "^0.14.1"
+  },
+  "devDependencies": {
   },
   "repository": {
     "type": "git",
