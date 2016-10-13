@@ -19,13 +19,6 @@ export class EventsService {
   }
 
   public getEventById(eventId: string) {
-    if(this._env === 'development') {
-      return this._http.get('../../../assets/mock-data/mock-event.json')
-        .map((response:Response) => {
-          return response.json();
-        })
-        .catch((error) => this.handleError(error));
-    }
     return this._http.get(`${this._appConfig.getHostName()}/events/${eventId}`)
       .map((response:Response) => {
         return response.json();
