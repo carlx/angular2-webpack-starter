@@ -15,6 +15,8 @@ import {TimeDirective} from '../shared/directives/time.directive';
 import {SummaryComponent} from './registration/summary.component';
 import {EvenemDescriptionComponent} from './registration/evenem-description.component';
 import {EventDescriptionComponent} from './registration/event-description.component';
+import {RegistrationWrapperComponent} from './registration/registration-wrapper.component';
+import {PaymentAdvertComponent} from './registration/payment-advert.component';
 
 @NgModule({
   imports: [
@@ -34,14 +36,12 @@ import {EventDescriptionComponent} from './registration/event-description.compon
     EvenemInfoComponent,
     TimeDirective,
     SummaryComponent,
-    EventDescriptionComponent
+    EventDescriptionComponent,
+    RegistrationWrapperComponent,
+    PaymentAdvertComponent
   ],
   exports: [
-    RegistrationFormComponent,
-    SuccessComponent,
-    EventInfoComponent,
-    FailureComponent,
-    SpinnerComponent
+    RegistrationWrapperComponent
   ]
 })
  export class EventsModule {}

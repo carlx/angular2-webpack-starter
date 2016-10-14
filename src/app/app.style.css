@@ -11,6 +11,10 @@ body {
   border-radius: 0px;
 }
 
+.panel-event .btn {
+  border-radius: 0px;
+}
+
 .panel-event textarea {
   border-radius: 0px;
   resize: vertical;

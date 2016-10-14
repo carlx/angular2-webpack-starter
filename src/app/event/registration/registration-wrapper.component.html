@@ -1,0 +1,36 @@
+<my-spinner [isRunning]="isRunning | async"></my-spinner>
+<div class="container center-block">
+  <event-info [event]="event"></event-info>
+
+  <section [hidden]="(isRunning | async)">
+
+    <div class="row">
+      <div class="col-md-8">
+        <event-description [event]="event"></event-description>
+      </div>
+      <div class="col-md-4">
+        <summary [event]="event"></summary>
+      </div>
+    </div>
+
+    <div class="row" *ngIf="!isSuccessResponse && !isFailureResponse">
+      <div class="col-md-8">
+        <registration-form [event]="event"></registration-form>
+      </div>
+      <div class="col-md-4">
+        <payment-advert></payment-advert>
+      </div>
+    </div>
+
+    <div class="row" *ngIf="isSuccessResponse || isFailureResponse">
+      <div class="col-md-12">
+        <success *ngIf="isSuccessResponse"></success>
+        <failure *ngIf="isFailureResponse"></failure>
+      </div>
+    </div>
+
+    <evenem-info></evenem-info>
+
+  </section>
+
+</div>
