@@ -32,5 +32,25 @@ body {
   font-size: 12px;
 }
 
+.success-msg h2 {
+  margin-bottom: 20px !important;
+}
+
+.failure-msg h2 {
+  margin-bottom: 20px !important;
+}
+
+.heigth-100-percent {
+  height: 100%;
+}
+
+.margin-top-6 {
+  margin-top: 6%;
+}
+
+.align-image {
+  margin-left: auto;
+  margin-right: auto;
+}
 
 

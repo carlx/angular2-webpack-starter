@@ -17,6 +17,7 @@ import {EvenemDescriptionComponent} from './registration/evenem-description.comp
 import {EventDescriptionComponent} from './registration/event-description.component';
 import {RegistrationWrapperComponent} from './registration/registration-wrapper.component';
 import {PaymentAdvertComponent} from './registration/payment-advert.component';
+import {InvalidPathComponent} from '../shared/components/invalid-path.component';
 
 @NgModule({
   imports: [
@@ -38,7 +39,8 @@ import {PaymentAdvertComponent} from './registration/payment-advert.component';
     SummaryComponent,
     EventDescriptionComponent,
     RegistrationWrapperComponent,
-    PaymentAdvertComponent
+    PaymentAdvertComponent,
+    InvalidPathComponent
   ],
   exports: [
     RegistrationWrapperComponent,
