@@ -1,11 +1,11 @@
-import { Component, OnInit, OnDestroy, Inject, Input, OnChanges } from '@angular/core';
+import { Component, OnInit, OnDestroy, Inject, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { validateCheckBox } from '../../shared/validators/checkbox.validator';
 import { validateEmail } from '../../shared/validators/email.validator';
 import { validatePhone } from '../../shared/validators/phone.validator';
 import { Subscription } from 'rxjs';
 import { LoaderService } from '../../shared/services/loader.service';
-import {RegistrationService} from '../../shared/services/registration.service';
+import { RegistrationService } from '../../shared/services/registration.service';
 
 @Component({
   selector: 'registration-form',

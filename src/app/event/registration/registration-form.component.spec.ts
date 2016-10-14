@@ -31,10 +31,10 @@ describe('register form component test', () => {
 
   });
 
-  it('register component html should contain event-info', (done) => {
+  it('register component html should contain text', (done) => {
     fixture.detectChanges();
-    let de = fixture.debugElement.query(By.css('.container'));
-    expect(de.nativeElement.innerHTML).toContain('event-info');
+    let de = fixture.debugElement.query(By.css('.panel'));
+    expect(de.nativeElement.innerHTML).toContain('Prosimy');
     done();
   })
 

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { EventsService } from '../../shared/services/events.service';
 import { LoaderService } from '../../shared/services/loader.service';
 import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'registration-wrapper',
@@ -27,14 +28,14 @@ export class RegistrationWrapperComponent implements OnInit {
     this.isRunning = this._loaderService.contentIsLoading$;
     this._loaderService.contentIsLoading$.next(true);
 
-    this._route.url.subscribe(res => {
-      let arr = res.filter(
-        element => element.path === 'success' ||
-        element.path === 'failure')
-        .map(element => element.path);
-      if(arr.includes('success')) {
+    this._route.url.subscribe((res: Array<Object>) => {
+      let arr: Array<string> = res.filter(
+        element => element['path'] === 'success' ||
+        element['path'] === 'failure')
+        .map(element => element['path']);
+      if(arr.indexOf('success') >= 0) {
         this.isSuccessResponse = true;
-      } else if(arr.includes('failure')) {
+      } else if(arr.indexOf('failure') >= 0) {
         this.isFailureResponse = true;
       }
     });
