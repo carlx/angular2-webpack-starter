@@ -73,8 +73,8 @@ export class RegistrationFormComponent implements OnInit, OnDestroy {
       this._loaderService.contentIsLoading$.next(false);
     });
 
-    this.checkAll.valueChanges.subscribe(result => {
-      if(result === true) {
+    this.checkAll.valueChanges.subscribe(checkAllValue => {
+      if(checkAllValue) {
         this.register.patchValue(true);
         this.marketing.patchValue(true);
       } else {
