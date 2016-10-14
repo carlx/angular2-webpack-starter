@@ -14,7 +14,7 @@ export class AppConfigService {
         this.hostname = 'http://tickets.flymore.com.pl';
         break;
       default:
-        this.hostname = 'http://tickets.flymore.com.pl';
+        this.hostname = 'https://tickets.flymore.com.pl';
         break;
     }
   }
