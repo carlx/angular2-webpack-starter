@@ -1,7 +1,7 @@
 {
-  "name": "angular2-webpack-starter",
+  "name": "eventiclient",
   "version": "5.0.5",
-  "description": "An Angular 2 Webpack Starter kit featuring Angular 2 (Router, Http, Forms, Services, Tests, E2E, Coverage), Karma, Protractor, Jasmine, Istanbul, TypeScript, and Webpack by AngularClass",
+  "description": "",
   "keywords": [
     "angular2",
     "webpack",
@@ -56,7 +56,8 @@
     "webdriver:start": "npm run webdriver-manager start",
     "webdriver:update": "npm run webdriver-manager update",
     "webpack-dev-server": "webpack-dev-server",
-    "webpack": "webpack"
+    "webpack": "webpack",
+    "heroku-postbuild": "npm run build:prod"
   },
   "dependencies": {
     "@angular/common": "2.0.0",
@@ -76,14 +77,14 @@
     "angular2-toaster": "^1.0.1",
     "assets-webpack-plugin": "^3.4.0",
     "core-js": "^2.4.1",
+    "express": "^4.14.0",
+    "gzippo": "^0.2.0",
     "http-server": "^0.9.0",
     "ie-shim": "^0.1.0",
     "moment": "^2.15.1",
     "ng2-bootstrap": "^1.1.5",
     "rxjs": "5.0.0-beta.12",
-    "zone.js": "~0.6.17"
-  },
-  "devDependencies": {
+    "zone.js": "~0.6.17",
     "@types/hammerjs": "^2.0.33",
     "@types/jasmine": "^2.2.34",
     "@types/node": "^6.0.38",
@@ -138,9 +139,11 @@
     "url-loader": "^0.5.7",
     "webpack": "2.1.0-beta.22",
     "webpack-dev-middleware": "^1.6.1",
-    "webpack-dev-server": "2.1.0-beta.5",
+    "webpack-dev-server": "^2.1.0-beta.5",
     "webpack-md5-hash": "^0.0.5",
     "webpack-merge": "^0.14.1"
+  },
+  "devDependencies": {
   },
   "repository": {
     "type": "git",
@@ -150,7 +153,6 @@
     "url": "https://github.com/angularclass/angular2-webpack-starter/issues"
   },
   "engines": {
-    "node": ">= 4.2.1",
-    "npm": ">= 3"
+    "node": "6.7.0"
   }
 }
