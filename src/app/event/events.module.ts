@@ -41,7 +41,8 @@ import {PaymentAdvertComponent} from './registration/payment-advert.component';
     PaymentAdvertComponent
   ],
   exports: [
-    RegistrationWrapperComponent
+    RegistrationWrapperComponent,
+    FailureComponent
   ]
 })
  export class EventsModule {}

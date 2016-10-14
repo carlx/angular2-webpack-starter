@@ -8,7 +8,7 @@ import { FailureComponent } from './event/registration/failure.component';
 import {RegistrationWrapperComponent} from './event/registration/registration-wrapper.component';
 
 export const ROUTES: Routes = [
-  { path: '', component: RegistrationFormComponent},
+  { path: '', component: FailureComponent},
   { path: 'registration/:eventId', component: RegistrationWrapperComponent},
   { path: 'registration/response/success/:eventId', component: RegistrationWrapperComponent},
   { path: 'registration/response/failure/:eventId', component: RegistrationWrapperComponent}
