@@ -13,6 +13,10 @@ import {NegatePipe} from '../shared/pipes/negate.pipe';
 import {EvenemInfoComponent} from './registration/evenem-info.component';
 import {TimeDirective} from '../shared/directives/time.directive';
 import {SummaryComponent} from './registration/summary.component';
+import {EvenemDescriptionComponent} from './registration/evenem-description.component';
+import {EventDescriptionComponent} from './registration/event-description.component';
+import {RegistrationWrapperComponent} from './registration/registration-wrapper.component';
+import {PaymentAdvertComponent} from './registration/payment-advert.component';
 
 @NgModule({
   imports: [
@@ -31,14 +35,13 @@ import {SummaryComponent} from './registration/summary.component';
     NegatePipe,
     EvenemInfoComponent,
     TimeDirective,
-    SummaryComponent
+    SummaryComponent,
+    EventDescriptionComponent,
+    RegistrationWrapperComponent,
+    PaymentAdvertComponent
   ],
   exports: [
-    RegistrationFormComponent,
-    SuccessComponent,
-    EventInfoComponent,
-    FailureComponent,
-    SpinnerComponent
+    RegistrationWrapperComponent
   ]
 })
  export class EventsModule {}

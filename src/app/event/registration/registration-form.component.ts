@@ -1,13 +1,11 @@
-import { Component, OnInit, OnDestroy, Inject } from '@angular/core';
+import { Component, OnInit, OnDestroy, Inject, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { validateCheckBox } from '../../shared/validators/checkbox.validator';
 import { validateEmail } from '../../shared/validators/email.validator';
 import { validatePhone } from '../../shared/validators/phone.validator';
-import { Router, ActivatedRoute } from '@angular/router';
-import { EventsService } from '../../shared/services/events.service';
-import { Subscription, Observable } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { LoaderService } from '../../shared/services/loader.service';
-import {RegistrationService} from '../../shared/services/registration.service';
+import { RegistrationService } from '../../shared/services/registration.service';
 
 @Component({
   selector: 'registration-form',
@@ -17,14 +15,12 @@ import {RegistrationService} from '../../shared/services/registration.service';
   ]
 })
 
-export class RegistrationFormComponent implements OnInit, OnDestroy {
+export class RegistrationFormComponent implements OnInit, OnDestroy, OnChanges {
 
+  @Input() event: Object;
   registerForm: FormGroup;
   formSubmitted: boolean = false;
   subscription: Subscription;
-  isRunning: Observable<boolean>;
-
-  event: Object;
 
 
   public isCollapsedRegister:boolean = true;
@@ -36,9 +32,6 @@ export class RegistrationFormComponent implements OnInit, OnDestroy {
 
   constructor(
     private _formBuilder: FormBuilder,
-    private _router: Router,
-    private _eventsService: EventsService,
-    private _route: ActivatedRoute,
     private _registrationService: RegistrationService,
     private _loaderService: LoaderService,
     @Inject('windowRef') private _windowRef: any,
@@ -61,18 +54,15 @@ export class RegistrationFormComponent implements OnInit, OnDestroy {
       })
     });
 
-    this.isRunning = this._loaderService.contentIsLoading$;
-    this._loaderService.contentIsLoading$.next(true);
-    this._route.params.flatMap((param: any) => {
-      this.eventId.patchValue(param['eventId']);
-      return this._eventsService.getEventById(param.eventId)
-    }).subscribe((result: Object) => {
-      this._loaderService.contentIsLoading$.next(false);
-      this.event = result;
-    }, (error: any) => {
-      this._loaderService.contentIsLoading$.next(false);
+    this.checkAll.valueChanges.subscribe(checkAllValue => {
+      if(checkAllValue) {
+        this.register.patchValue(true);
+        this.marketing.patchValue(true);
+      } else {
+        this.register.patchValue(false);
+        this.marketing.patchValue(false);
+      }
     });
-
 
   }
 
@@ -99,17 +89,11 @@ export class RegistrationFormComponent implements OnInit, OnDestroy {
       });
   }
 
-  selectAll() {
-    if (!this.checkAll.value) {
-      this.register.patchValue(true);
-      this.marketing.patchValue(true);
-    } else {
-      this.register.patchValue(false);
-      this.marketing.patchValue(false);
+  ngOnChanges(changes: SimpleChanges) {
+    if(changes['event'] && changes['event'].currentValue) {
+      this.eventId.patchValue(changes['event'].currentValue['_id']);
     }
-
   }
-
 
 
 }
