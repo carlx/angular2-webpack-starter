@@ -20,7 +20,7 @@ import { ToasterModule } from 'angular2-toaster/angular2-toaster';
 import { LoaderService } from './shared/services/loader.service';
 import { AppConfigService } from './shared/services/app-config.service';
 import { RegistrationService } from './shared/services/registration.service';
-import {LocationStrategy, HashLocationStrategy} from '@angular/common';
+import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -33,6 +33,7 @@ type StoreType = {
   restoreInputValues: () => void,
   disposeOldHosts: () => void
 };
+
 
 /**
  * `AppModule` is the main entry point into Angular2's bootstraping process
@@ -58,6 +59,7 @@ type StoreType = {
     RegistrationService,
     {provide: LocationStrategy, useClass: HashLocationStrategy},
     {provide: 'Environment', useValue: ENV},
+    {provide: 'ApiAddress', useValue: API_ADDR},
     {provide: 'windowRef', useValue: window},
     LoaderService
   ]

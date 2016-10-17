@@ -7,16 +7,9 @@ export class AppConfigService {
   hostname: string;
 
   constructor(
-    @Inject('Environment') private _env: string
+    @Inject('ApiAddress') private _api: string
   ) {
-    switch(_env) {
-      case 'development':
-        this.hostname = 'http://localhost:3030';
-        break;
-      default:
-        this.hostname = 'http://tickets-api.flymore.com.pl';
-        break;
-    }
+    this.hostname = this._api;
   }
 
  getHostName() {
