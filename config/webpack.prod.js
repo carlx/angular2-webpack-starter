@@ -28,7 +28,8 @@ const METADATA = webpackMerge(commonConfig({env: ENV}).metadata, {
   host: HOST,
   port: PORT,
   ENV: ENV,
-  HMR: false
+  HMR: false,
+  API_ADDR: API_ADDR
 });
 
 module.exports = function(env) {
