@@ -14,6 +14,7 @@ const DefinePlugin = require('webpack/lib/DefinePlugin');
  * Webpack Constants
  */
 const ENV = process.env.ENV = process.env.NODE_ENV = 'test';
+const API_ADDR = process.env.API_ADDR || 'http://localhost:3030';
 
 /**
  * Webpack configuration
@@ -197,6 +198,7 @@ module.exports = function(options) {
       new DefinePlugin({
         'ENV': JSON.stringify(ENV),
         'HMR': false,
+        'API_ADDR': JSON.stringify(API_ADDR),
         'process.env': {
           'ENV': JSON.stringify(ENV),
           'NODE_ENV': JSON.stringify(ENV),
