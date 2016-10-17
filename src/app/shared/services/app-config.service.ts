@@ -11,10 +11,10 @@ export class AppConfigService {
   ) {
     switch(_env) {
       case 'development':
-        this.hostname = 'http://tickets.flymore.com.pl';
+        this.hostname = 'http://localhost:3030';
         break;
       default:
-        this.hostname = 'http://tickets.flymore.com.pl';
+        this.hostname = 'http://tickets-api.flymore.com.pl';
         break;
     }
   }
